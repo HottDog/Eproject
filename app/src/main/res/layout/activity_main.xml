@@ -20,7 +20,7 @@
         <RelativeLayout
             android:id="@+id/hot"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
                 android:id="@+id/hot_tv"
@@ -29,8 +29,6 @@
                 android:textColor="@color/hui"
                 android:text="热销"
                 android:textSize="16dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:layout_centerInParent="true"/>
             <LinearLayout
                 android:id="@+id/hot_select"
@@ -55,7 +53,7 @@
         <RelativeLayout
             android:id="@+id/all"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1">
             <TextView
                 android:id="@+id/all_tv"
@@ -65,8 +63,6 @@
                 android:text="全部"
                 android:textSize="16dp"
                 android:layout_centerInParent="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
                 />
             <LinearLayout
                 android:id="@+id/all_select"
@@ -91,8 +87,27 @@
         <RelativeLayout
             android:id="@+id/yourself"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1">
+            <LinearLayout
+                android:id="@+id/yourself_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="自选"
+                    android:textSize="19dp"
+                    android:textColor="@color/blue"
+                    />
+                <View
+                    android:layout_width="40dp"
+                    android:layout_height="2dp"
+                    android:background="@color/blue"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
             <TextView
                 android:id="@+id/yourself_tv"
                 android:layout_width="wrap_content"
@@ -100,28 +115,9 @@
                 android:textColor="@color/hui"
                 android:text="自选"
                 android:textSize="16dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_centerInParent="true"/>
-            <LinearLayout
-                android:id="@+id/yourself_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerInParent="true">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="自选"
-                android:textSize="19dp"
-                android:textColor="@color/blue"
-                />
-            <View
-                android:layout_width="40dp"
-                android:layout_height="2dp"
-                android:background="@color/blue"
-                android:layout_marginTop="5dp"/>
-            </LinearLayout>
+
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

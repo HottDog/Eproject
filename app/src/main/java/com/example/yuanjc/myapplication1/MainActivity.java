@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener{
@@ -97,7 +96,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         }
     }
     private void clearSelect(){
-        yourself.setVisibility(View.VISIBLE);
+        yourself_tv.setVisibility(View.VISIBLE);
         all_tv.setVisibility(View.VISIBLE);
         hot_tv.setVisibility(View.VISIBLE);
         all_select.setVisibility(View.VISIBLE);
