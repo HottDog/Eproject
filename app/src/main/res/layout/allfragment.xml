@@ -5,46 +5,6 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimaryDark">
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:scaleType="fitXY"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"
-            android:src="@mipmap/back"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="全部"
-            android:textSize="18dp"
-            android:textColor="@color/white"
-            android:layout_centerInParent="true"/>
-        <TextView
-            android:id="@+id/type_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="类型"
-            android:textSize="16dp"
-            android:textColor="@color/white"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="15dp"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:id="@+id/sousuo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@mipmap/sousuo"
-            android:scaleType="fitXY"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="50dp"
-            android:layout_centerVertical="true"
-            />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         >
@@ -59,10 +19,17 @@
             android:layout_marginBottom="10dp"
             >
             <RelativeLayout
+                android:id="@+id/re1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp">
                 <TextView
+                    android:id="@+id/tv1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="日跌涨"
@@ -75,10 +42,17 @@
                 android:layout_height="match_parent"
                 android:background="@color/hui"/>
             <RelativeLayout
+                android:id="@+id/re2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp">
                 <TextView
+                    android:id="@+id/tv2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="近一年"
@@ -91,10 +65,17 @@
                 android:layout_height="match_parent"
                 android:background="@color/hui"/>
             <RelativeLayout
+                android:id="@+id/re3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp">
                 <TextView
+                    android:id="@+id/tv3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="今年以来"
@@ -107,25 +88,34 @@
                 android:layout_height="match_parent"
                 android:background="@color/hui"/>
             <RelativeLayout
+                android:id="@+id/re4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_centerInParent="true">
                     <TextView
+                        android:id="@+id/tv4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/hui"
                         android:textSize="14dp"
                         android:text="更多"/>
                     <ImageView
+                        android:id="@+id/iv4"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:scaleType="fitXY"
-                        android:src="@mipmap/arrow_bottom"/>
+                        android:src="@mipmap/arrow_bottom"
+                        android:layout_marginLeft="3dp"/>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -144,7 +134,13 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"/>
+        <LinearLayout
+            android:id="@+id/re21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <TextView
+            android:id="@+id/tv21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="单位净值"
@@ -155,6 +151,7 @@
             android:layout_marginLeft="140dp"
             />
         <ImageView
+            android:id="@+id/iv21"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:scaleType="fitXY"
@@ -162,7 +159,14 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/re22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <TextView
+            android:id="@+id/tv22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="今年以来"
@@ -172,6 +176,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="20dp"/>
         <ImageView
+            android:id="@+id/iv22"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:scaleType="fitXY"
@@ -179,12 +184,13 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"/>
+        </LinearLayout>
     </LinearLayout>
-    <ListView
+    <com.example.yuanjc.myapplication1.RefreshAndLoadListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-    </ListView>
+    </com.example.yuanjc.myapplication1.RefreshAndLoadListView>
 </LinearLayout>

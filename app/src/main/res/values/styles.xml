@@ -10,4 +10,7 @@
     <style name="notitle">
         <item name="android:windowNoTitle">true</item>
     </style>
+    <style name="Theme.AppCompat.Light.NoAct" parent="android:Theme.Holo.Light">
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

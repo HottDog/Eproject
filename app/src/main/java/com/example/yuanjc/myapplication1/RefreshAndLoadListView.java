@@ -63,7 +63,7 @@ public class RefreshAndLoadListView extends ListView implements AbsListView.OnSc
         }
     };
     Timer timer=new Timer();
-    public RefreshAndLoadListView(Context context, AttributeSet attrs) {
+    public RefreshAndLoadListView(Context context, AttributeSet attrs)  {
         super(context, attrs);
         initHeaderView();
         initFooterView();
