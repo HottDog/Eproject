@@ -120,10 +120,9 @@
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -138,7 +137,9 @@
             android:id="@+id/re21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="145dp">
         <TextView
             android:id="@+id/tv21"
             android:layout_width="wrap_content"
@@ -148,7 +149,6 @@
             android:textSize="14dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_marginLeft="140dp"
             />
         <ImageView
             android:id="@+id/iv21"
@@ -164,7 +164,9 @@
             android:id="@+id/re22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="55dp">
         <TextView
             android:id="@+id/tv22"
             android:layout_width="wrap_content"
@@ -173,8 +175,7 @@
             android:textSize="14dp"
             android:textColor="@color/hui"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginBottom="15dp" />
         <ImageView
             android:id="@+id/iv22"
             android:layout_width="15dp"
@@ -185,7 +186,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginLeft="5dp"/>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
     <com.example.yuanjc.myapplication1.RefreshAndLoadListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
