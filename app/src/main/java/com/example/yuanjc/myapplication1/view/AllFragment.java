@@ -17,10 +17,7 @@ import android.widget.TextView;
 import com.example.yuanjc.myapplication1.ItemSelectPopWindow;
 import com.example.yuanjc.myapplication1.R;
 import com.example.yuanjc.myapplication1.RefreshAndLoadListView;
-import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
-
-import java.util.ArrayList;
 
 /**
  * Created by yuanjc on 2016/7/21.
@@ -169,7 +166,6 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
 
             @Override
             public void onLoadingMore() {
-
             }
         });
 
