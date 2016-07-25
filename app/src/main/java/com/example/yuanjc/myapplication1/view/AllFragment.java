@@ -162,10 +162,12 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
             @Override
             public void onDownPullRefresh() {
                 presenter.update();
+                listView.hideHeaderView();
             }
 
             @Override
             public void onLoadingMore() {
+                listView.hideFooterView();
             }
         });
 
