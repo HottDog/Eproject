@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.view;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.yuanjc.myapplication1.R;
+
 /**
  * Created by yuanjc on 2016/7/21.
  */
-public class YourselfFragment extends Fragment {
+public class HotFragment extends Fragment {
     //三个一般必须重载的方法
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -22,7 +24,7 @@ public class YourselfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View layout=inflater.inflate(R.layout.yourselffragment, container, false);
+        View layout=inflater.inflate(R.layout.hotfragment, container, false);
         return layout;
     }
 }

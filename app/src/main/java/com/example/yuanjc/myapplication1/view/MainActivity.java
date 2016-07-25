@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.view;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.yuanjc.myapplication1.R;
 
 public class MainActivity extends Activity implements View.OnClickListener{
     private RelativeLayout hot;

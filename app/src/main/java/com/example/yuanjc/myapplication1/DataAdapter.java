@@ -8,26 +8,36 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yuanjc.myapplication1.bean.Fund;
+
+import java.util.ArrayList;
+
 /**
  * Created by yuanjc on 2016/7/22.
  */
 public class DataAdapter extends BaseAdapter {
     private LayoutInflater mInflate;
     private Context context;
+    private ArrayList<Fund> funds;
     public DataAdapter(Context context) {
         // TODO Auto-generated constructor stub
         this.context=context;
         this.mInflate=LayoutInflater.from(context);
-//		SetOptions();
+        funds=new ArrayList<Fund>();
     }
+
+    public void setFunds(ArrayList<Fund> funds) {
+        this.funds = funds;
+    }
+
     @Override
     public int getCount() {
-        return 0;
+        return funds.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return funds.get(position);
     }
 
     @Override
@@ -36,8 +46,8 @@ public class DataAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+    public View getView(final int position, View convertView, ViewGroup parent) {
+        final ViewHolder holder;
         if(convertView==null)
         {
             convertView=mInflate.inflate(R.layout.data_item, null);
@@ -53,7 +63,28 @@ public class DataAdapter extends BaseAdapter {
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-
+        holder.tv11.setText(funds.get(position).getName());
+        holder.tv12.setText(funds.get(position).getNetValue());
+        holder.tv3.setText(funds.get(position).getState());
+        holder.tv21.setText(funds.get(position).getId());
+        holder.tv22.setText(funds.get(position).getTime());
+        if(funds.get(position).isLike()){
+            holder.star.setImageResource(R.mipmap.star_select);
+        }else{
+            holder.star.setImageResource(R.mipmap.star);
+        }
+        holder.star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(funds.get(position).isLike()){
+                    holder.star.setImageResource(R.mipmap.star);
+                    funds.get(position).setLike(false);
+                }else {
+                    holder.star.setImageResource(R.mipmap.star_select);
+                    funds.get(position).setLike(true);
+                }
+            }
+        });
         return convertView;
     }
     public final class ViewHolder {

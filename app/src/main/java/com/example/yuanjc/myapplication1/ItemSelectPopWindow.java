@@ -3,17 +3,14 @@ package com.example.yuanjc.myapplication1;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+
+import com.example.yuanjc.myapplication1.view.AllFragment;
 
 /**
  * Created by yuanjc on 2016/7/22.

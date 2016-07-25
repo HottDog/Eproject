@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.view;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -7,16 +7,25 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.yuanjc.myapplication1.ItemSelectPopWindow;
+import com.example.yuanjc.myapplication1.R;
+import com.example.yuanjc.myapplication1.RefreshAndLoadListView;
+import com.example.yuanjc.myapplication1.bean.Fund;
+import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
+
+import java.util.ArrayList;
+
 /**
  * Created by yuanjc on 2016/7/21.
  */
-public class AllFragment extends Fragment implements View.OnClickListener{
+public class AllFragment extends Fragment implements View.OnClickListener,IAllFragmentView{
 
     private RelativeLayout re1;
     private RelativeLayout re2;
@@ -43,6 +52,8 @@ public class AllFragment extends Fragment implements View.OnClickListener{
     private boolean netvalue=false;
     //item排序，true为升序，false为降序
     private boolean item=false;
+    //presenter
+    private AllFragmentPresenter presenter;
     //handler
     Handler handler=new Handler(){
         @Override
@@ -123,6 +134,10 @@ public class AllFragment extends Fragment implements View.OnClickListener{
         iv22=(ImageView)layout.findViewById(R.id.iv22);
 
         listView=(RefreshAndLoadListView)layout.findViewById(R.id.listview);
+        if(getActivity()!=null) {
+            presenter = new AllFragmentPresenter(this, getActivity());
+            presenter.setData();
+        }
         //set the click event
         re1.setOnClickListener(this);
         re2.setOnClickListener(this);
@@ -143,13 +158,13 @@ public class AllFragment extends Fragment implements View.OnClickListener{
                 }
             });
         }
-
+        defaultSetting();
         //listview
         listView=(RefreshAndLoadListView)layout.findViewById(R.id.listview);
         listView.setOnRefreshListener(new RefreshAndLoadListView.OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {
-
+                presenter.update();
             }
 
             @Override
@@ -157,6 +172,7 @@ public class AllFragment extends Fragment implements View.OnClickListener{
 
             }
         });
+
     }
 
     @Override
@@ -263,8 +279,20 @@ public class AllFragment extends Fragment implements View.OnClickListener{
         tv22.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public void iniListView(BaseAdapter adapter) {
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void updateListView(BaseAdapter adapter) {
+        adapter.notifyDataSetChanged();
+    }
+
+
     public final static int ONE=0X111;
     public final static int TWO=0X112;
     public final static int THREE=0X113;
     public final static int FOUR=0X114;
+
 }
