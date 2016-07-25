@@ -27,7 +27,7 @@ public class AllFragmentModel implements IAllFragmentModel {
             }
             fund.setId(Integer.valueOf(id+i).toString());
             fund.setName("易基金");
-            fund.setNetValue(Double.valueOf(netValue+i*0.003).toString());
+            fund.setNetValue(Double.valueOf(netValue+i*0.001).toString());
             fund.setTime("2015-2-16");
             funds.add(fund);
         }
