@@ -81,6 +81,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         fm=getFragmentManager();
 
         if (savedInstanceState == null) {
+            defaultSet();
             if(null==allFragment){
                 allFragment=new AllFragment();
             }
@@ -113,7 +114,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
         }
     }
-
+    private void defaultSet(){
+        suosou_hot.setVisibility(View.GONE);
+    }
     /**
      * 控制页面切换
      * @param index

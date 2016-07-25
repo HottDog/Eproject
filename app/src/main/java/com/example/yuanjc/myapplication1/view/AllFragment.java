@@ -47,8 +47,10 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
     private ItemSelectPopWindow itemSelectPopWindow;
     //单位净值排序，true为升序，false为降序,默认为降序
     private boolean netvalue=false;
+    private boolean continus_netvalue=false;   //false表示目前没有连续点击，true表示目前是连续点击状态
     //item排序，true为升序，false为降序
     private boolean item=false;
+    private boolean continus_item=false;   //false表示目前没有连续点击，true表示目前是连续点击状态
     //presenter
     private AllFragmentPresenter presenter;
     //handler
@@ -237,26 +239,45 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
                 }
                 break;
             case 5:
+                continus_item=false;
                 iv21.setVisibility(View.VISIBLE);
                 iv22.setVisibility(View.GONE);
-                if(netvalue){
-                    iv21.setImageResource(R.mipmap.arrow_top);
-                    netvalue=false;
+                if(continus_netvalue){
+                    if(netvalue){
+                        //递增状态
+                        iv21.setImageResource(R.mipmap.arrow_top);
+                        netvalue=false;
+                    }else {
+                        //递减状态
+                        iv21.setImageResource(R.mipmap.arrow_bottom);
+                        netvalue=true;
+                    }
                 }else {
+                    //递减状态
                     iv21.setImageResource(R.mipmap.arrow_bottom);
                     netvalue=true;
                 }
+                continus_netvalue=true;
                 break;
             case 6:
+                continus_netvalue=false;
                 iv21.setVisibility(View.GONE);
                 iv22.setVisibility(View.VISIBLE);
-                if(item){
-                    iv22.setImageResource(R.mipmap.arrow_top);
-                    item=false;
+                if(continus_item){
+                    if(item){
+                        //递增状态
+                        iv22.setImageResource(R.mipmap.arrow_top);
+                        item=false;
+                    }else {
+
+                        iv22.setImageResource(R.mipmap.arrow_bottom);
+                        item=true;
+                    }
                 }else {
                     iv22.setImageResource(R.mipmap.arrow_bottom);
                     item=true;
                 }
+                continus_item=true;
                 break;
             default:
                 break;
@@ -275,6 +296,13 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
 
         tv21.setVisibility(View.VISIBLE);
         tv22.setVisibility(View.VISIBLE);
+
+        iv22.setVisibility(View.VISIBLE);
+        iv22.setImageResource(R.mipmap.arrow_bottom);
+        item=true;
+
+        continus_netvalue=false;
+        continus_item=true;
     }
 
     @Override

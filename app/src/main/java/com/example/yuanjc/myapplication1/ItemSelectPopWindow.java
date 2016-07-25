@@ -68,6 +68,7 @@ public class ItemSelectPopWindow extends PopupWindow implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        this.dismiss();
         switch (v.getId()){
             case R.id.re11:
                 handler.sendEmptyMessage(AllFragment.ONE);
