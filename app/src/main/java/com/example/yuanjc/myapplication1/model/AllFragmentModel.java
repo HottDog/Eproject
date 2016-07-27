@@ -1,13 +1,16 @@
 package com.example.yuanjc.myapplication1.model;
 
+import com.example.yuanjc.myapplication1.DataAdapter;
 import com.example.yuanjc.myapplication1.bean.Fund;
+import com.example.yuanjc.myapplication1.util.DataUtil;
+import com.example.yuanjc.myapplication1.view.AllFragmentContract;
 
 import java.util.ArrayList;
 
 /**
  * Created by yuanjc on 2016/7/25.
  */
-public class AllFragmentModel implements IAllFragmentModel {
+public class AllFragmentModel implements AllFragmentContract.IAllFragmentModel {
     private ArrayList<Fund> funds;
     public AllFragmentModel(){
         funds=new ArrayList<Fund>();
@@ -15,20 +18,40 @@ public class AllFragmentModel implements IAllFragmentModel {
     }
     private void setData(){
         int id=10005;
-        double netValue=1.005;
         for(int i=0;i<10;i++){
             Fund fund=new Fund();
-            if(i%3==0) {
+            if(DataUtil.getIntRandom(0,9)/2==0){
                 fund.setLike(true);
-                fund.setState("发行中");
             }else {
                 fund.setLike(false);
-                fund.setState("--");
             }
-            fund.setId(Integer.valueOf(id+i).toString());
-            fund.setName("易基金");
-            fund.setNetValue(Double.valueOf(netValue+i*0.001).toString());
-            fund.setTime("2015-2-16");
+            if(DataUtil.getIntRandom(0,9)/2==0){
+                fund.setAIP_isok(true);
+            }else {
+                fund.setAIP_isok(false);
+            }
+            if(DataUtil.getIntRandom(0,9)/2==0){
+                fund.setBuy_isok(true);
+            }else {
+                fund.setBuy_isok(false);
+            }
+            fund.setId(Integer.valueOf(id+DataUtil.getIntRandom(2,30)).toString());
+            fund.setName("易基金"+Integer.valueOf(i).toString());
+            fund.setTime("2015-2-"+Integer.valueOf(DataUtil.getIntRandom(2,20)).toString());
+            fund.setDebuff(DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001));
+            fund.setNetValue(DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01));
             funds.add(fund);
         }
     }

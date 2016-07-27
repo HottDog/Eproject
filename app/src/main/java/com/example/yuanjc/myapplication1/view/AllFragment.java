@@ -22,7 +22,7 @@ import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
 /**
  * Created by yuanjc on 2016/7/21.
  */
-public class AllFragment extends Fragment implements View.OnClickListener,IAllFragmentView{
+public class AllFragment extends Fragment implements View.OnClickListener,AllFragmentContract.IAllFragmentView{
 
     private RelativeLayout re1;
     private RelativeLayout re2;
@@ -52,7 +52,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
     private boolean item=false;
     private boolean continus_item=false;   //false表示目前没有连续点击，true表示目前是连续点击状态
     //presenter
-    private AllFragmentPresenter presenter;
+    private AllFragmentContract.IAllFragmentPresenter presenter;
     //handler
     Handler handler=new Handler(){
         @Override
@@ -163,7 +163,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,IAllFr
         listView.setOnRefreshListener(new RefreshAndLoadListView.OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {
-                presenter.update();
+                presenter.updateData();
                 listView.hideHeaderView();
             }
 
