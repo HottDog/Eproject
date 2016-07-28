@@ -21,7 +21,7 @@ public class DataAdapter extends BaseAdapter {
     private ArrayList<Fund> funds;
     private ArrayList<Double> netValues;
     private ArrayList<Double> debuffs;
-    private ArrayList<Integer> order;
+    private int[] order;
     public DataAdapter(Context context) {
         // TODO Auto-generated constructor stub
         this.context=context;
@@ -29,11 +29,10 @@ public class DataAdapter extends BaseAdapter {
         funds=new ArrayList<Fund>();
         netValues=new ArrayList<Double>();
         debuffs=new ArrayList<Double>();
-        order=new ArrayList<Integer>();
     }
 
     public void setFunds(ArrayList<Fund> funds,ArrayList<Double> netValues,
-            ArrayList<Double> debuffs,ArrayList<Integer> order) {
+            ArrayList<Double> debuffs,int[] order) {
         this.funds = funds;
         this.order=order;
         this.debuffs=debuffs;
@@ -73,12 +72,12 @@ public class DataAdapter extends BaseAdapter {
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        holder.tv11.setText(funds.get(order.get(position)).getName());
-        holder.tv12.setText(Double.valueOf(netValues.get(order.get(position))).toString());
-        holder.tv3.setText(Double.valueOf(debuffs.get(order.get(position))).toString()+"%");
-        holder.tv21.setText(funds.get(order.get(position)).getId());
-        holder.tv22.setText(funds.get(order.get(position)).getTime());
-        if(funds.get(order.get(position)).isLike()){
+        holder.tv11.setText(funds.get(order[position]).getName());
+        holder.tv12.setText(Double.valueOf(netValues.get(order[position])).toString());
+        holder.tv3.setText(Double.valueOf(debuffs.get(order[position])).toString()+"%");
+        holder.tv21.setText(funds.get(order[position]).getId());
+        holder.tv22.setText(funds.get(order[position]).getTime());
+        if(funds.get(order[position]).isLike()){
             holder.star.setImageResource(R.mipmap.star_select);
         }else{
             holder.star.setImageResource(R.mipmap.star);
@@ -86,12 +85,12 @@ public class DataAdapter extends BaseAdapter {
         holder.star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(funds.get(order.get(position)).isLike()){
+                if(funds.get(order[position]).isLike()){
                     holder.star.setImageResource(R.mipmap.star);
-                    funds.get(order.get(position)).setLike(false);
+                    funds.get(order[position]).setLike(false);
                 }else {
                     holder.star.setImageResource(R.mipmap.star_select);
-                    funds.get(order.get(position)).setLike(true);
+                    funds.get(order[position]).setLike(true);
                 }
             }
         });

@@ -34,7 +34,7 @@ public class DataUtil {
      * @param <T>
      */
     public static final <T extends Comparable<T>> void ascendingOrder
-    (ArrayList<Integer>a,ArrayList<T> b){
+    (int []a,ArrayList<T> b){
         int length=b.size();
         int count;        //指向每次内循环的最小值的序数
         for(int i=0;i<length;i++){
@@ -50,7 +50,7 @@ public class DataUtil {
                     }
                 }
             }
-            a.add(count,i);
+            a[count]=i;
         }
     }
 
@@ -62,7 +62,7 @@ public class DataUtil {
      * @param <T>
      */
     public static final <T extends Comparable<T>> void descendingOrder
-    (ArrayList<Integer>a, ArrayList<T> b){
+    (int []a, ArrayList<T> b){
         int length=b.size();
         int count;        //
         for(int i=0;i<length;i++){
@@ -78,7 +78,7 @@ public class DataUtil {
                     }
                 }
             }
-            a.add(count,i);
+            a[count]=i;
         }
     }
 }

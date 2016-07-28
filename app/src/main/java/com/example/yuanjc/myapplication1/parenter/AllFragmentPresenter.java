@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPresenter{
     private AllFragmentContract.IAllFragmentView view;
     private AllFragmentContract.IAllFragmentModel data;
-    private ArrayList<Integer> order;
+    private int[] order;
     private ArrayList<Double> netValues;
     private ArrayList<Double> debuffs;
     private DataAdapter adapter;
@@ -31,7 +31,7 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
         adapter=new DataAdapter(context);
         netValues=new ArrayList<>();
         debuffs=new ArrayList<>();
-        order=new ArrayList<Integer>();
+        order=new int[10000];
     }
     @Override
     /**
@@ -118,7 +118,6 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
     }
     private void setOrder(OrderType orderType){
         if(data.getFunds()!=null&&data.getFunds().size()>0){
-            order.clear();
             switch (orderType){
                 case DEBUFF_ASCEND:
                     DataUtil.ascendingOrder(order,debuffs);
