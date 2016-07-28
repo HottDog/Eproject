@@ -66,6 +66,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("近一周");
                     tv22.setText("近一周");
                     iv21.setVisibility(View.GONE);
+                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.WEEKVALUE,
+                            AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 case TWO:
                     clearSelect();
@@ -74,6 +76,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("近一月");
                     tv22.setText("近一月");
                     iv21.setVisibility(View.GONE);
+                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.MONTHVALUE,
+                            AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 case THREE:
                     clearSelect();
@@ -82,6 +86,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("近三月");
                     tv22.setText("近三月");
                     iv21.setVisibility(View.GONE);
+                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.THREEMONTHVALUE,
+                            AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 case FOUR:
                     clearSelect();
@@ -90,6 +96,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("成立以来");
                     tv22.setText("成立以来");
                     iv21.setVisibility(View.GONE);
+                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.ALLVALUE,
+                            AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 default:
                     break;
@@ -174,18 +182,24 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
         });
 
     }
-
     @Override
     public void onClick(View v) {
+
         switch (v.getId()){
             case R.id.re1:
                 setSelect(1);
+                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.DAYVALUE,
+                        AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             case R.id.re2:
                 setSelect(2);
+                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.RECENTYEARVALUE,
+                        AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             case R.id.re3:
                 setSelect(3);
+                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.THISYEARVALUE,
+                        AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             case R.id.re4:
                 setSelect(4);
@@ -195,6 +209,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                 break;
             case R.id.re22:
                 setSelect(6);
+                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.DAYVALUE,
+                        AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             default:
                 break;
@@ -247,15 +263,21 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                         //递增状态
                         iv21.setImageResource(R.mipmap.arrow_top);
                         netvalue=false;
+                        presenter.showSelctTypeData(null,
+                                AllFragmentPresenter.OrderType.NETVALUE_ASCEND);
                     }else {
                         //递减状态
                         iv21.setImageResource(R.mipmap.arrow_bottom);
                         netvalue=true;
+                        presenter.showSelctTypeData(null,
+                                AllFragmentPresenter.OrderType.NETVALUE_DESCEND);
                     }
                 }else {
                     //递减状态
                     iv21.setImageResource(R.mipmap.arrow_bottom);
                     netvalue=true;
+                    presenter.showSelctTypeData(null,
+                            AllFragmentPresenter.OrderType.NETVALUE_DESCEND);
                 }
                 continus_netvalue=true;
                 break;
@@ -268,14 +290,21 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                         //递增状态
                         iv22.setImageResource(R.mipmap.arrow_top);
                         item=false;
+                        presenter.showSelctTypeData(null,
+                                AllFragmentPresenter.OrderType.DEBUFF_ASCEND);
                     }else {
-
+                        //递减状态
                         iv22.setImageResource(R.mipmap.arrow_bottom);
                         item=true;
+                        presenter.showSelctTypeData(null,
+                                AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     }
                 }else {
+                    //递减状态
                     iv22.setImageResource(R.mipmap.arrow_bottom);
                     item=true;
+                    presenter.showSelctTypeData(null,
+                            AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 }
                 continus_item=true;
                 break;
@@ -312,6 +341,11 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
 
     @Override
     public void updateListView(BaseAdapter adapter) {
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showSelectTypeDataListView(BaseAdapter adapter) {
         adapter.notifyDataSetChanged();
     }
 

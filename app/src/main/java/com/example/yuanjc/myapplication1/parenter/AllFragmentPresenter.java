@@ -62,6 +62,23 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
         }
         view.updateListView(adapter);
     }
+
+    @Override
+    public void showSelctTypeData(ValueType valueType, OrderType orderType) {
+        if(data.getFunds()!=null&&data.getFunds().size()>0){
+            //设置显示今年以来的数据
+            if(valueType!=null) {
+                currentValueType = valueType;
+            }
+            setValuse(currentValueType);
+            //设置以debuff的降序显示
+            currentOrderType=orderType;
+            setOrder(currentOrderType);
+            adapter.setFunds(data.getFunds(),netValues,debuffs,order);
+        }
+        view.showSelectTypeDataListView(adapter);
+    }
+
     private void setValuse(ValueType valueType){
         if(data.getFunds()!=null){
             netValues.clear();
@@ -136,6 +153,10 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
             }
         }
     }
+
+    /**
+     * 显示的数据类型
+     */
     public enum ValueType{
         THISYEARVALUE(1),DAYVALUE(2),ALLVALUE(3),RECENTYEARVALUE(4),
         THREEMONTHVALUE(5),WEEKVALUE(6),MONTHVALUE(7);
@@ -143,6 +164,10 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
 
         }
     }
+
+    /**
+     * 排序的方式
+     */
     public enum OrderType{
         DEBUFF_DESCEND(1),DEBUFF_ASCEND(2),NETVALUE_DESCEND(3),NETVALUE_ASCEND(4);
         OrderType(int i){}
