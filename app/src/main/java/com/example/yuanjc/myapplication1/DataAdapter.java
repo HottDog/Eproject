@@ -64,8 +64,8 @@ public class DataAdapter extends BaseAdapter {
             holder=(ViewHolder)convertView.getTag();
         }
         holder.tv11.setText(funds.get(position).getName());
-        holder.tv12.setText(funds.get(position).getNetValue());
-        holder.tv3.setText(funds.get(position).getState());
+        holder.tv12.setText(Double.valueOf(funds.get(position).getNetValue().getAllValue()).toString());
+        holder.tv3.setText(Double.valueOf(funds.get(position).getDebuff().getAllValue()).toString()+"%");
         holder.tv21.setText(funds.get(position).getId());
         holder.tv22.setText(funds.get(position).getTime());
         if(funds.get(position).isLike()){
