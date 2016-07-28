@@ -37,7 +37,7 @@ public class AllFragmentModel implements AllFragmentContract.IAllFragmentModel {
             }
             fund.setId(Integer.valueOf(id+DataUtil.getIntRandom(2,30)).toString());
             fund.setName("易基金"+Integer.valueOf(i).toString());
-            fund.setTime("2015-2-"+Integer.valueOf(DataUtil.getIntRandom(2,20)).toString());
+            fund.setTime("2015-02-"+Integer.valueOf(DataUtil.getIntRandom(2,20)).toString());
             fund.setDebuff(DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
                     DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
                     DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
