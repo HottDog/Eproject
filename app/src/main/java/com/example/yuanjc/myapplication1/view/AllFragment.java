@@ -338,7 +338,9 @@ public class AllFragment extends Fragment implements View.OnClickListener,
         continus_netvalue=false;
         continus_item=true;
     }
-
+    public void setType(Fund.Type t){
+        select=t;
+    }
 
     @Override
     public void iniListView(BaseAdapter adapter) {
