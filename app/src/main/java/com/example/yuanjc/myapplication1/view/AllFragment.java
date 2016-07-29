@@ -4,9 +4,11 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -184,7 +186,17 @@ public class AllFragment extends Fragment implements View.OnClickListener,
                 listView.hideFooterView();
             }
         });
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("点击的position：",Integer.valueOf(position).toString());
+//                Intent intent=new Intent(getActivity(),DetailActivity.class);
+//                Bundle bundle=new Bundle();
+                if(null!=getActivity()) {
+                    presenter.goTo(getActivity(),select,position-1);
+                }
+            }
+        });
     }
     @Override
     public void onClick(View v) {
@@ -219,6 +231,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,
         }
     }
     public void showSelectTypeView(Fund.Type t){
+        select=t;
         presenter.changeSelectTypeData(select);
     }
     private void defaultSetting(){

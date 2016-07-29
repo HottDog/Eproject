@@ -12,11 +12,9 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 
 import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.util.ViewUtil;
-import com.example.yuanjc.myapplication1.view.AllFragment;
 import com.example.yuanjc.myapplication1.view.MainActivity;
 
 /**
@@ -30,15 +28,17 @@ public class TypeSelectPopWindow extends PopupWindow {
     private ListView listView;
     private String types[]={"全部","债券型","货币型","股票型","QDII","短期理财","指数型","混合型"};
     private TypeDataAdapter adapter;
+
     //选择的类型，默认是全部
-//    private Fund.Type select;
+    private Fund.Type select;
     public TypeSelectPopWindow(Activity context, final Handler handler, Fund.Type selectType) {
         this.handler = handler;
         this.context = context;
+        this.select=select;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         contentView = inflater.inflate(R.layout.typeselect_popwindow, null);
         this.setContentView(contentView);
-        this.setWidth(ViewUtil.Dp2Px(context, 120));
+        this.setWidth(ViewUtil.Dp2Px(context, 100));
         this.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         this.setFocusable(true);
         this.setOutsideTouchable(true);
@@ -49,7 +49,7 @@ public class TypeSelectPopWindow extends PopupWindow {
 //        ColorDrawable dw=new ColorDrawable(0000000000);
 //        this.setBackgroundDrawable(dw);
 //        this.setAnimationStyle(R.style.AnimationPreview);
-        listView = (ListView) contentView.findViewById(R.id.listview);
+        listView = (ListView) contentView.findViewById(R.id.type_list);
         if (adapter == null) {
             adapter = new TypeDataAdapter(context, types);
         }
@@ -67,8 +67,13 @@ public class TypeSelectPopWindow extends PopupWindow {
                 bundle.putInt("type", position);
                 message.setData(bundle);
                 handler.sendMessage(message);
+                dismiss();
             }
         });
+    }
+    public void setSelect(Fund.Type t){
+        adapter.setSelect(t);
+        adapter.notifyDataSetChanged();
     }
     /**
      * 显示popupWindow

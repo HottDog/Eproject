@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.example.yuanjc.myapplication1.bean.Fund;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
  * Created by yuanjc on 2016/7/22.
  */
 public class DataAdapter extends BaseAdapter {
+    DecimalFormat df   = new DecimalFormat("######0.000");
     private LayoutInflater mInflate;
     private Context context;
     private ArrayList<Fund> funds;
@@ -33,12 +35,17 @@ public class DataAdapter extends BaseAdapter {
 
     public void setFunds(ArrayList<Fund> funds,ArrayList<Double> netValues,
             ArrayList<Double> debuffs,int[] order) {
-        this.funds = funds;
-        this.order=order;
-        this.debuffs=debuffs;
-        this.netValues=netValues;
+            this.funds = funds;
+            this.order=order;
+            this.debuffs=debuffs;
+            this.netValues=netValues;
     }
-
+    public void setFunds(ArrayList<Fund> funds){
+//        this.funds.clear();
+//        netValues.clear();
+//        debuffs.clear();
+        this.funds=funds;
+    }
     @Override
     public int getCount() {
         return funds.size();
@@ -72,33 +79,33 @@ public class DataAdapter extends BaseAdapter {
         else {
             holder=(ViewHolder)convertView.getTag();
         }
-        holder.tv11.setText(funds.get(order[position]).getName());
-        holder.tv12.setText(Double.valueOf(netValues.get(order[position])).toString());
-        holder.tv3.setText(Double.valueOf(debuffs.get(order[position])).toString()+"%");
-        if(debuffs.get(order[position])>=0){
-            holder.tv3.setTextColor(context.getResources().getColor(R.color.red));
-        }else {
-            holder.tv3.setTextColor(context.getResources().getColor(R.color.light));
-        }
-        holder.tv21.setText(funds.get(order[position]).getId());
-        holder.tv22.setText(funds.get(order[position]).getTime());
-        if(funds.get(order[position]).isLike()){
-            holder.star.setImageResource(R.mipmap.star_select);
-        }else{
-            holder.star.setImageResource(R.mipmap.star);
-        }
-        holder.star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(funds.get(order[position]).isLike()){
-                    holder.star.setImageResource(R.mipmap.star);
-                    funds.get(order[position]).setLike(false);
-                }else {
-                    holder.star.setImageResource(R.mipmap.star_select);
-                    funds.get(order[position]).setLike(true);
-                }
+            holder.tv11.setText(funds.get(order[position]).getName());
+            holder.tv12.setText(Double.valueOf(df.format(netValues.get(order[position]))).toString());
+            holder.tv3.setText(Double.valueOf(debuffs.get(order[position])).toString() + "%");
+            if (debuffs.get(order[position]) >= 0) {
+                holder.tv3.setTextColor(context.getResources().getColor(R.color.red));
+            } else {
+                holder.tv3.setTextColor(context.getResources().getColor(R.color.light));
             }
-        });
+            holder.tv21.setText(funds.get(order[position]).getId());
+            holder.tv22.setText(funds.get(order[position]).getTime());
+            if (funds.get(order[position]).isLike()) {
+                holder.star.setImageResource(R.mipmap.star_select);
+            } else {
+                holder.star.setImageResource(R.mipmap.star);
+            }
+            holder.star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (funds.get(order[position]).isLike()) {
+                        holder.star.setImageResource(R.mipmap.star);
+                        funds.get(order[position]).setLike(false);
+                    } else {
+                        holder.star.setImageResource(R.mipmap.star_select);
+                        funds.get(order[position]).setLike(true);
+                    }
+                }
+            });
         return convertView;
     }
     public final class ViewHolder {

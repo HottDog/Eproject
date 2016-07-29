@@ -1,13 +1,16 @@
 package com.example.yuanjc.myapplication1.parenter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.example.yuanjc.myapplication1.DataAdapter;
 import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.model.AllFragmentModel;
 import com.example.yuanjc.myapplication1.util.DataUtil;
 import com.example.yuanjc.myapplication1.view.AllFragmentContract;
+import com.example.yuanjc.myapplication1.view.DetailActivity;
 
 import java.util.ArrayList;
 
@@ -41,7 +44,7 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
         if(data.getFunds()!=null&&data.getFunds().size()>0){
             //设置显示今年以来的数据
             currentValueType=ValueType.THISYEARVALUE;
-            setValuse(null,currentValueType);
+            setValuse(Fund.Type.QUANBU,currentValueType);
             //设置以debuff的降序显示
             currentOrderType=OrderType.DEBUFF_DESCEND;
             setOrder(Fund.Type.QUANBU,currentOrderType);
@@ -63,6 +66,8 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
             }
             setOrder(type,currentOrderType);
             adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
+        }else {
+            adapter.setFunds(data.getFunds(type));
         }
         view.updateListView(adapter);
     }
@@ -86,7 +91,22 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
     @Override
     public void changeSelectTypeData(Fund.Type type) {
         updateData(type);
-        view.showSelectTypeDataListView(adapter);
+//        view.showSelectTypeDataListView(adapter);
+    }
+
+    @Override
+    public void goTo(Activity activity, Fund.Type t,int p) {
+        if(data.getFunds(t)!=null&&data.getFunds(t).size()>0) {
+            Intent intent = new Intent(activity, DetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("name",data.getFunds(t).get(order[p]).getName() );
+            bundle.putString("id",data.getFunds(t).get(order[p]).getId());
+            bundle.putString("type",data.getFunds(t).get(order[p]).getType().toString());
+            bundle.putBoolean("AIP",data.getFunds(t).get(order[p]).isAIP_isok());
+            bundle.putBoolean("buy",data.getFunds(t).get(order[p]).isBuy_isok());
+            intent.putExtras(bundle);
+            activity.startActivity(intent);
+        }
     }
 
     private void setValuse(Fund.Type type,ValueType valueType){

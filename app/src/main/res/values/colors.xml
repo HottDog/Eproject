@@ -5,10 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="blue">#6699FF</color>
+    <color name="lightblue">#99ccff</color>
     <color name="hui">#cccccc</color>
     <color name="touming">#00000000</color>
     <color name="lightgray">#9B9B9B</color>
     <color name="black">#4A4A4A</color>
     <color name="red">#FF0033</color>
+    <color name="lightred">#FFCCCC</color>
     <color name="light">#99CC00</color>
 </resources>

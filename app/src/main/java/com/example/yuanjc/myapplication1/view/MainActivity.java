@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -55,7 +57,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
                     Bundle bundle=msg.getData();
                     int value=bundle.getInt("type");
                     select= Fund.Type.getType(value);
-                    if(allFragment==null){
+                    Log.i("value",Fund.Type.getType(value).toString());
+                    if(allFragment!=null){
+                        Log.i("allFragment","不是空的");
                         allFragment.showSelectTypeView(select);
                         topic.setText(Fund.Type.getType(value).toString());
                     }
@@ -137,6 +141,10 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.sousuo_hot:
                 break;
             case R.id.sousuo:
+                if(mContent!=null&&mContent==allFragment){
+                    Intent intent=new Intent(MainActivity.this,SousuoActivity.class);
+                    startActivity(intent);
+                }
                 break;
             case R.id.type_tv:
                 showTypeSelect();
@@ -204,6 +212,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             if(null==typeSelectPopWindow) {
                 typeSelectPopWindow = new TypeSelectPopWindow(this, handler, select);
             }
+            typeSelectPopWindow.setSelect(select);
             typeSelectPopWindow.showPopupWindow(type);
         }
     }

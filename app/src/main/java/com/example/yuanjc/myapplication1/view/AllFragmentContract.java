@@ -1,5 +1,6 @@
 package com.example.yuanjc.myapplication1.view;
 
+import android.app.Activity;
 import android.widget.BaseAdapter;
 
 import com.example.yuanjc.myapplication1.bean.Fund;
@@ -27,5 +28,6 @@ public interface AllFragmentContract {
         void updateData(Fund.Type type);
         void showSelctTypeData(Fund.Type type, AllFragmentPresenter.ValueType valueType, AllFragmentPresenter.OrderType orderType);
         void changeSelectTypeData(Fund.Type type);
+        void goTo(Activity activity, Fund.Type t,int p);
     }
 }
