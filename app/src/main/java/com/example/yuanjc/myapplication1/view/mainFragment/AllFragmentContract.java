@@ -1,10 +1,10 @@
-package com.example.yuanjc.myapplication1.view;
+package com.example.yuanjc.myapplication1.view.mainFragment;
 
 import android.app.Activity;
 import android.widget.BaseAdapter;
 
 import com.example.yuanjc.myapplication1.bean.Fund;
-import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
+import com.example.yuanjc.myapplication1.presenter.AllFragmentPresenter;
 
 import java.util.ArrayList;
 

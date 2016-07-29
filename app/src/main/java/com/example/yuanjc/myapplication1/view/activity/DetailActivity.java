@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1.view;
+package com.example.yuanjc.myapplication1.view.activity;
 
 import android.app.Activity;
 import android.content.Intent;

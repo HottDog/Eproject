@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.view.customView;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -14,6 +14,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
+import com.example.yuanjc.myapplication1.R;
 
 import java.util.Timer;
 import java.util.TimerTask;

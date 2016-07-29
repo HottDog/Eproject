@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.util.DataUtil;
-import com.example.yuanjc.myapplication1.view.AllFragmentContract;
+import com.example.yuanjc.myapplication1.view.mainFragment.AllFragmentContract;
 
 import java.util.ArrayList;
 

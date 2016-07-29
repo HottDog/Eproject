@@ -187,11 +187,11 @@
             android:layout_marginLeft="5dp"/>
         </LinearLayout>
     </RelativeLayout>
-    <com.example.yuanjc.myapplication1.RefreshAndLoadListView
+    <com.example.yuanjc.myapplication1.view.customView.RefreshAndLoadListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
 
-    </com.example.yuanjc.myapplication1.RefreshAndLoadListView>
+    </com.example.yuanjc.myapplication1.view.customView.RefreshAndLoadListView>
 </LinearLayout>
