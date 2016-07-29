@@ -17,12 +17,14 @@ import android.widget.TextView;
 import com.example.yuanjc.myapplication1.ItemSelectPopWindow;
 import com.example.yuanjc.myapplication1.R;
 import com.example.yuanjc.myapplication1.RefreshAndLoadListView;
+import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
 
 /**
  * Created by yuanjc on 2016/7/21.
  */
-public class AllFragment extends Fragment implements View.OnClickListener,AllFragmentContract.IAllFragmentView{
+public class AllFragment extends Fragment implements View.OnClickListener,
+        AllFragmentContract.IAllFragmentView{
 
     private RelativeLayout re1;
     private RelativeLayout re2;
@@ -53,6 +55,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
     private boolean continus_item=false;   //false表示目前没有连续点击，true表示目前是连续点击状态
     //presenter
     private AllFragmentContract.IAllFragmentPresenter presenter;
+    //要显示的数据类型
+    private Fund.Type select= Fund.Type.QUANBU;
     //handler
     Handler handler=new Handler(){
         @Override
@@ -66,7 +70,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("近一周");
                     tv22.setText("近一周");
                     iv21.setVisibility(View.GONE);
-                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.WEEKVALUE,
+                    presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.WEEKVALUE,
                             AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 case TWO:
@@ -76,7 +80,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("近一月");
                     tv22.setText("近一月");
                     iv21.setVisibility(View.GONE);
-                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.MONTHVALUE,
+                    presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.MONTHVALUE,
                             AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 case THREE:
@@ -86,7 +90,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("近三月");
                     tv22.setText("近三月");
                     iv21.setVisibility(View.GONE);
-                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.THREEMONTHVALUE,
+                    presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.THREEMONTHVALUE,
                             AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 case FOUR:
@@ -96,7 +100,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                     tv4.setText("成立以来");
                     tv22.setText("成立以来");
                     iv21.setVisibility(View.GONE);
-                    presenter.showSelctTypeData(AllFragmentPresenter.ValueType.ALLVALUE,
+                    presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.ALLVALUE,
                             AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     break;
                 default:
@@ -171,7 +175,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
         listView.setOnRefreshListener(new RefreshAndLoadListView.OnRefreshListener() {
             @Override
             public void onDownPullRefresh() {
-                presenter.updateData();
+                presenter.updateData(select);
                 listView.hideHeaderView();
             }
 
@@ -188,17 +192,17 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
         switch (v.getId()){
             case R.id.re1:
                 setSelect(1);
-                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.DAYVALUE,
+                presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.DAYVALUE,
                         AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             case R.id.re2:
                 setSelect(2);
-                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.RECENTYEARVALUE,
+                presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.RECENTYEARVALUE,
                         AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             case R.id.re3:
                 setSelect(3);
-                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.THISYEARVALUE,
+                presenter.showSelctTypeData(select,AllFragmentPresenter.ValueType.THISYEARVALUE,
                         AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             case R.id.re4:
@@ -209,12 +213,13 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                 break;
             case R.id.re22:
                 setSelect(6);
-                presenter.showSelctTypeData(AllFragmentPresenter.ValueType.DAYVALUE,
-                        AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 break;
             default:
                 break;
         }
+    }
+    public void showSelectTypeView(Fund.Type t){
+        presenter.changeSelectTypeData(select);
     }
     private void defaultSetting(){
         clearSelect();
@@ -263,20 +268,20 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                         //递增状态
                         iv21.setImageResource(R.mipmap.arrow_top);
                         netvalue=false;
-                        presenter.showSelctTypeData(null,
+                        presenter.showSelctTypeData(select,null,
                                 AllFragmentPresenter.OrderType.NETVALUE_ASCEND);
                     }else {
                         //递减状态
                         iv21.setImageResource(R.mipmap.arrow_bottom);
                         netvalue=true;
-                        presenter.showSelctTypeData(null,
+                        presenter.showSelctTypeData(select,null,
                                 AllFragmentPresenter.OrderType.NETVALUE_DESCEND);
                     }
                 }else {
                     //递减状态
                     iv21.setImageResource(R.mipmap.arrow_bottom);
                     netvalue=true;
-                    presenter.showSelctTypeData(null,
+                    presenter.showSelctTypeData(select,null,
                             AllFragmentPresenter.OrderType.NETVALUE_DESCEND);
                 }
                 continus_netvalue=true;
@@ -290,20 +295,20 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
                         //递增状态
                         iv22.setImageResource(R.mipmap.arrow_top);
                         item=false;
-                        presenter.showSelctTypeData(null,
+                        presenter.showSelctTypeData(select,null,
                                 AllFragmentPresenter.OrderType.DEBUFF_ASCEND);
                     }else {
                         //递减状态
                         iv22.setImageResource(R.mipmap.arrow_bottom);
                         item=true;
-                        presenter.showSelctTypeData(null,
+                        presenter.showSelctTypeData(select,null,
                                 AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                     }
                 }else {
                     //递减状态
                     iv22.setImageResource(R.mipmap.arrow_bottom);
                     item=true;
-                    presenter.showSelctTypeData(null,
+                    presenter.showSelctTypeData(select,null,
                             AllFragmentPresenter.OrderType.DEBUFF_DESCEND);
                 }
                 continus_item=true;
@@ -334,6 +339,7 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
         continus_item=true;
     }
 
+
     @Override
     public void iniListView(BaseAdapter adapter) {
         listView.setAdapter(adapter);
@@ -348,7 +354,6 @@ public class AllFragment extends Fragment implements View.OnClickListener,AllFra
     public void showSelectTypeDataListView(BaseAdapter adapter) {
         adapter.notifyDataSetChanged();
     }
-
 
     public final static int ONE=0X111;
     public final static int TWO=0X112;

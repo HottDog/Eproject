@@ -75,6 +75,11 @@ public class DataAdapter extends BaseAdapter {
         holder.tv11.setText(funds.get(order[position]).getName());
         holder.tv12.setText(Double.valueOf(netValues.get(order[position])).toString());
         holder.tv3.setText(Double.valueOf(debuffs.get(order[position])).toString()+"%");
+        if(debuffs.get(order[position])>=0){
+            holder.tv3.setTextColor(context.getResources().getColor(R.color.red));
+        }else {
+            holder.tv3.setTextColor(context.getResources().getColor(R.color.light));
+        }
         holder.tv21.setText(funds.get(order[position]).getId());
         holder.tv22.setText(funds.get(order[position]).getTime());
         if(funds.get(order[position]).isLike()){

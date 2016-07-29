@@ -135,11 +135,11 @@ public class Fund {
      * 基金的所有类型
      */
     public enum Type{
-            ZAIJUAN("债券型"),HUOBI("货币型"),GUPIAO("股票型"),
-        QDII("QDII"),DUANQILICAI("短期理财"),ZHISHU("指数型"),HUNHE("混合型");
+            QUANBU(0),ZAIJUAN(1),HUOBI(2),GUPIAO(3),
+        QDII(4),DUANQILICAI(5),ZHISHU(6),HUNHE(7);
         //成员变量
-        private String s;
-        Type(String s){
+        private int s;
+        Type(int s){
             this.s=s;
         }
         public static Type getType(String name){
@@ -159,9 +159,53 @@ public class Fund {
                 return HUNHE;
             }
         }
+        public static Type getType(int i){
+            switch (i){
+                case 0:
+                    return QUANBU;
+                case 1:
+                    return ZAIJUAN;
+                case 2:
+                    return HUOBI;
+                case 3:
+                    return GUPIAO;
+                case 4:
+                    return QDII;
+                case 5:
+                    return DUANQILICAI;
+                case 6:
+                    return ZHISHU;
+                case 7:
+                    return HUNHE;
+                default:
+                    return QUANBU;
+            }
+        }
+        public int value(){
+            return s;
+        }
         @Override
         public String toString() {
-            return this.s;
+            switch (s){
+                case 0:
+                    return "全部";
+                case 1:
+                    return "债券型";
+                case 2:
+                    return "货币型";
+                case 3:
+                    return "股票型";
+                case 4:
+                    return "QDII";
+                case 5:
+                    return "短期理财";
+                case 6:
+                    return "指数型";
+                case 7:
+                    return "混合型";
+                default:
+                    return "";
+            }
         }
     }
     public class NetValue{

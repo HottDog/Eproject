@@ -14,15 +14,18 @@ public interface AllFragmentContract {
     interface IAllFragmentModel {
         ArrayList<Fund> getFunds();
 
+        ArrayList<Fund> getFunds(Fund.Type t);
     }
     interface IAllFragmentView {
         void iniListView(BaseAdapter adapter);
         void updateListView(BaseAdapter adapter);
         void showSelectTypeDataListView(BaseAdapter adapter);
+
     }
     interface IAllFragmentPresenter{
         void setData();
-        void updateData();
-        void showSelctTypeData(AllFragmentPresenter.ValueType valueType, AllFragmentPresenter.OrderType orderType);
+        void updateData(Fund.Type type);
+        void showSelctTypeData(Fund.Type type, AllFragmentPresenter.ValueType valueType, AllFragmentPresenter.OrderType orderType);
+        void changeSelectTypeData(Fund.Type type);
     }
 }

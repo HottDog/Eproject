@@ -38,26 +38,46 @@ public class AllFragmentModel implements AllFragmentContract.IAllFragmentModel {
             fund.setId(Integer.valueOf(id+DataUtil.getIntRandom(2,30)).toString());
             fund.setName("易基金"+Integer.valueOf(i).toString());
             fund.setTime("2015-02-"+Integer.valueOf(DataUtil.getIntRandom(2,20)).toString());
-            fund.setNetValue(DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,20)*0.001));
-            fund.setDebuff(DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+            fund.setNetValue(
+                    DataUtil.getIntRandom(1,20)*0.001,
+                    DataUtil.getIntRandom(1,20)*0.001,
+                    DataUtil.getIntRandom(1,20)*0.001,
+                    DataUtil.getIntRandom(1,20)*0.001,
+                    DataUtil.getIntRandom(1,20)*0.001,
+                    DataUtil.getIntRandom(1,20)*0.001,
+                    DataUtil.getIntRandom(1,20)*0.001
+            );
+            fund.setDebuff(
                     DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
                     DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
                     DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
                     DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
                     DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
-                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01));
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01),
+                    DataUtil.randomNP(DataUtil.getIntRandom(1,100)*1.00+DataUtil.getIntRandom(1,100)*0.01)
+            );
             funds.add(fund);
         }
     }
 
     @Override
+
     public ArrayList<Fund> getFunds() {
         return funds;
     }
+    @Override
+    public ArrayList<Fund> getFunds(Fund.Type t) {
+        ArrayList<Fund> typeFunds=new ArrayList<>();
+        if(t== Fund.Type.QUANBU){
+            return funds;
+        }else {
+            for(int i=0;i<funds.size();i++){
+                if(funds.get(i).getType()==t){
+                    typeFunds.add(funds.get(i));
+                }
+            }
+            return typeFunds;
+        }
+    }
+
 }

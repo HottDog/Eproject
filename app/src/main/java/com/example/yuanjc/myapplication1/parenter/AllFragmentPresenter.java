@@ -35,96 +35,106 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
     }
     @Override
     /**
-     * 默认是设置今年以来,降序
+     * 默认是设置今年以来,降序,全部
      */
     public void setData(){
         if(data.getFunds()!=null&&data.getFunds().size()>0){
             //设置显示今年以来的数据
             currentValueType=ValueType.THISYEARVALUE;
-            setValuse(currentValueType);
+            setValuse(null,currentValueType);
             //设置以debuff的降序显示
             currentOrderType=OrderType.DEBUFF_DESCEND;
-            setOrder(currentOrderType);
+            setOrder(Fund.Type.QUANBU,currentOrderType);
             adapter.setFunds(data.getFunds(),netValues,debuffs,order);
         }
         view.iniListView(adapter);
     }
     @Override
-    public void updateData(){
-        if(data.getFunds()!=null&&data.getFunds().size()>0){
+    public void updateData(Fund.Type type){
+        if(data.getFunds(type)!=null&&data.getFunds(type).size()>0){
             //设置显示今年以来的数据
-            currentValueType=ValueType.THISYEARVALUE;
-            setValuse(currentValueType);
+            if(currentValueType==null){
+                currentValueType=ValueType.THISYEARVALUE;
+            }
+            setValuse(type,currentValueType);
             //设置以debuff的降序显示
-            currentOrderType=OrderType.DEBUFF_DESCEND;
-            setOrder(currentOrderType);
-            adapter.setFunds(data.getFunds(),netValues,debuffs,order);
+            if(currentOrderType==null){
+                currentOrderType=OrderType.DEBUFF_DESCEND;
+            }
+            setOrder(type,currentOrderType);
+            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
         }
         view.updateListView(adapter);
     }
 
     @Override
-    public void showSelctTypeData(ValueType valueType, OrderType orderType) {
-        if(data.getFunds()!=null&&data.getFunds().size()>0){
+    public void showSelctTypeData(Fund.Type type, ValueType valueType, OrderType orderType) {
+        if(data.getFunds(type)!=null&&data.getFunds(type).size()>0){
             //设置显示今年以来的数据
             if(valueType!=null) {
                 currentValueType = valueType;
             }
-            setValuse(currentValueType);
+            setValuse(type,currentValueType);
             //设置以debuff的降序显示
             currentOrderType=orderType;
-            setOrder(currentOrderType);
-            adapter.setFunds(data.getFunds(),netValues,debuffs,order);
+            setOrder(type,currentOrderType);
+            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
         }
         view.showSelectTypeDataListView(adapter);
     }
 
-    private void setValuse(ValueType valueType){
-        if(data.getFunds()!=null){
+    @Override
+    public void changeSelectTypeData(Fund.Type type) {
+        updateData(type);
+        view.showSelectTypeDataListView(adapter);
+    }
+
+    private void setValuse(Fund.Type type,ValueType valueType){
+        if(data.getFunds(type)!=null){
             netValues.clear();
             debuffs.clear();
-            int length=data.getFunds().size();
+            int length=data.getFunds(type).size();
             switch (valueType) {
                 case THISYEARVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getThisYearValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getThisYearValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getThisYearValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getThisYearValue());
                     }
                     break;
                 case DAYVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getDayValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getDayValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getDayValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getDayValue());
                     }
                     break;
                 case ALLVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getAllValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getAllValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getAllValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getAllValue());
                     }
                     break;
                 case RECENTYEARVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getRecentYearValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getRecentYearValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getRecentYearValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getRecentYearValue());
                     }
                     break;
                 case THREEMONTHVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getThreeMonthValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getThreeMonthValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getThreeMonthValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getThreeMonthValue());
                     }
                     break;
                 case WEEKVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getWeekValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getWeekValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getWeekValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getWeekValue());
                     }
                     break;
                 case MONTHVALUE:
                     for (int i = 0; i < length; i++) {
-                        netValues.add(data.getFunds().get(i).getNetValue().getMonthValue());
-                        debuffs.add(data.getFunds().get(i).getDebuff().getMonthValue());
+                        netValues.add(data.getFunds(type).get(i).getNetValue().getMonthValue());
+                        debuffs.add(data.getFunds(type).get(i).getDebuff().getMonthValue());
                     }
                     break;
                 default:
@@ -133,8 +143,8 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
             }
         }
     }
-    private void setOrder(OrderType orderType){
-        if(data.getFunds()!=null&&data.getFunds().size()>0){
+    private void setOrder(Fund.Type type, OrderType orderType){
+        if(data.getFunds(type)!=null&&data.getFunds(type).size()>0){
             switch (orderType){
                 case DEBUFF_ASCEND:
                     DataUtil.ascendingOrder(order,debuffs);

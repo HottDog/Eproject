@@ -9,4 +9,6 @@
     <color name="touming">#00000000</color>
     <color name="lightgray">#9B9B9B</color>
     <color name="black">#4A4A4A</color>
+    <color name="red">#FF0033</color>
+    <color name="light">#99CC00</color>
 </resources>

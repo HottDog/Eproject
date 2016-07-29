@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,6 +14,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuanjc.myapplication1.R;
+import com.example.yuanjc.myapplication1.TypeSelectPopWindow;
+import com.example.yuanjc.myapplication1.bean.Fund;
 
 public class MainActivity extends Activity implements View.OnClickListener{
     private RelativeLayout hot;
@@ -38,6 +42,29 @@ public class MainActivity extends Activity implements View.OnClickListener{
     YourselfFragment yourselfFragment;
     Fragment mContent;
     FragmentManager fm;
+    //选择的类型
+    private Fund.Type select= Fund.Type.QUANBU;
+    //popWIndows
+    private TypeSelectPopWindow typeSelectPopWindow;
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case TYPE:
+                    Bundle bundle=msg.getData();
+                    int value=bundle.getInt("type");
+                    select= Fund.Type.getType(value);
+                    if(allFragment==null){
+                        allFragment.showSelectTypeView(select);
+                        topic.setText(Fund.Type.getType(value).toString());
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +103,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
         back.setOnClickListener(this);
         suosou_hot.setOnClickListener(this);
         sousuo.setOnClickListener(this);
-
+        type.setOnClickListener(this);
         //initial the fragment
         fm=getFragmentManager();
 
@@ -84,6 +111,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
             defaultSet();
             if(null==allFragment){
                 allFragment=new AllFragment();
+                allFragment.setType(select);
             }
             fm.beginTransaction().add(R.id.content,
                     allFragment).commit();
@@ -109,6 +137,9 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.sousuo_hot:
                 break;
             case R.id.sousuo:
+                break;
+            case R.id.type_tv:
+                showTypeSelect();
                 break;
             default:
                 break;
@@ -138,7 +169,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 switchContent(mContent,hotFragment);
                 break;
             case 2:
-                topic.setText("全部");
+                topic.setText(select.toString());
                 type.setText("类型");
                 suosou_hot.setVisibility(View.GONE);
 
@@ -147,6 +178,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 yourself_select.setVisibility(View.GONE);
                 if(null==allFragment){
                     allFragment=new AllFragment();
+                    allFragment.setType(select);
                 }
                 switchContent(mContent,allFragment);
                 break;
@@ -165,6 +197,14 @@ public class MainActivity extends Activity implements View.OnClickListener{
                 break;
             default:
                 break;
+        }
+    }
+    private void showTypeSelect(){
+        if(mContent==allFragment&&mContent!=null){
+            if(null==typeSelectPopWindow) {
+                typeSelectPopWindow = new TypeSelectPopWindow(this, handler, select);
+            }
+            typeSelectPopWindow.showPopupWindow(type);
         }
     }
     private void clearSelect(){
@@ -199,4 +239,6 @@ public class MainActivity extends Activity implements View.OnClickListener{
             }
         }
     }
+    public static final int TYPE=0X212;
+
 }
