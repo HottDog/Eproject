@@ -22,7 +22,7 @@ import java.util.TimerTask;
  * Created by YJC on 2016/6/23.
  */
 public class RefreshAndLoadListView extends ListView implements AbsListView.OnScrollListener{
-    private static final String TAG = "RefreshListView";
+    private static final String TAG = "RefreshAndLoadListView";
     private int firstVisibleItemPosition; // 屏幕显示在第一个的item的索引
     private int downY; // 按下时y轴的偏移量
     private int headerViewHeight; // 头布局的高度
