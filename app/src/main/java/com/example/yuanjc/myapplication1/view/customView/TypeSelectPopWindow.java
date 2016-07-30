@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.view.customView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,9 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 
+import com.example.yuanjc.myapplication1.R;
+import com.example.yuanjc.myapplication1.adapter.TypeDataAdapter;
 import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.util.ViewUtil;
-import com.example.yuanjc.myapplication1.view.MainActivity;
+import com.example.yuanjc.myapplication1.view.activity.MainActivity;
 
 /**
  * Created by yuanjc on 2016/7/29.

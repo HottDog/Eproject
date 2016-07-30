@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.yuanjc.myapplication1.R;
 import com.example.yuanjc.myapplication1.bean.Fund;
-import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
 
 /**
  * Created by yuanjc on 2016/7/29.

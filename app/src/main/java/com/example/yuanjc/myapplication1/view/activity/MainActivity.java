@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1.view;
+package com.example.yuanjc.myapplication1.view.activity;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,8 +16,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuanjc.myapplication1.R;
-import com.example.yuanjc.myapplication1.TypeSelectPopWindow;
+import com.example.yuanjc.myapplication1.view.customView.TypeSelectPopWindow;
 import com.example.yuanjc.myapplication1.bean.Fund;
+import com.example.yuanjc.myapplication1.view.mainFragment.AllFragment;
+import com.example.yuanjc.myapplication1.view.mainFragment.HotFragment;
+import com.example.yuanjc.myapplication1.view.mainFragment.YourselfFragment;
 
 public class MainActivity extends Activity implements View.OnClickListener{
     private RelativeLayout hot;

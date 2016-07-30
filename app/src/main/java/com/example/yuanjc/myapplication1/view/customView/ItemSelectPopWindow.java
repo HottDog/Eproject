@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1;
+package com.example.yuanjc.myapplication1.view.customView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,7 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-import com.example.yuanjc.myapplication1.view.AllFragment;
+import com.example.yuanjc.myapplication1.R;
+import com.example.yuanjc.myapplication1.view.mainFragment.AllFragment;
 
 /**
  * Created by yuanjc on 2016/7/22.

@@ -1,4 +1,4 @@
-package com.example.yuanjc.myapplication1.view;
+package com.example.yuanjc.myapplication1.view.mainFragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -16,17 +16,17 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.yuanjc.myapplication1.ItemSelectPopWindow;
+import com.example.yuanjc.myapplication1.view.customView.ItemSelectPopWindow;
 import com.example.yuanjc.myapplication1.R;
-import com.example.yuanjc.myapplication1.RefreshAndLoadListView;
+import com.example.yuanjc.myapplication1.view.customView.RefreshAndLoadListView;
 import com.example.yuanjc.myapplication1.bean.Fund;
-import com.example.yuanjc.myapplication1.parenter.AllFragmentPresenter;
+import com.example.yuanjc.myapplication1.presenter.AllFragmentPresenter;
 
 /**
  * Created by yuanjc on 2016/7/21.
  */
 public class AllFragment extends Fragment implements View.OnClickListener,
-        AllFragmentContract.IAllFragmentView{
+        AllFragmentContract.IAllFragmentView {
 
     private RelativeLayout re1;
     private RelativeLayout re2;
@@ -200,7 +200,6 @@ public class AllFragment extends Fragment implements View.OnClickListener,
     }
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
             case R.id.re1:
                 setSelect(1);

@@ -1,16 +1,16 @@
-package com.example.yuanjc.myapplication1.parenter;
+package com.example.yuanjc.myapplication1.presenter;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.yuanjc.myapplication1.DataAdapter;
+import com.example.yuanjc.myapplication1.adapter.DataAdapter;
 import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.model.AllFragmentModel;
 import com.example.yuanjc.myapplication1.util.DataUtil;
-import com.example.yuanjc.myapplication1.view.AllFragmentContract;
-import com.example.yuanjc.myapplication1.view.DetailActivity;
+import com.example.yuanjc.myapplication1.view.mainFragment.AllFragmentContract;
+import com.example.yuanjc.myapplication1.view.activity.DetailActivity;
 
 import java.util.ArrayList;
 
