@@ -18,9 +18,12 @@ public interface AllFragmentContract {
         ArrayList<Fund> getFunds(Fund.Type t);
     }
     interface IAllFragmentView {
-        void iniListView(BaseAdapter adapter);
-        void updateListView(BaseAdapter adapter);
-        void showSelectTypeDataListView(BaseAdapter adapter);
+        void iniListView(ArrayList<Fund> funds,ArrayList<Double> netValues
+                ,ArrayList<Double> debuffs,int []order);
+        void updateListView(ArrayList<Fund> funds,ArrayList<Double> netValues
+                ,ArrayList<Double> debuffs,int []order);
+        void showSelectTypeDataListView(ArrayList<Fund> funds,ArrayList<Double> netValues
+                ,ArrayList<Double> debuffs,int []order);
 
     }
     interface IAllFragmentPresenter{

@@ -20,24 +20,26 @@ import java.util.ArrayList;
 public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPresenter{
     private AllFragmentContract.IAllFragmentView view;
     private AllFragmentContract.IAllFragmentModel data;
+    //数据的索引
     private int[] order;
     private ArrayList<Double> netValues;
     private ArrayList<Double> debuffs;
-    private DataAdapter adapter;
+//    private DataAdapter adapter;
     //目前显示的数据类型
     private ValueType currentValueType;
     //目前显示的顺序
     private OrderType currentOrderType;
-    public AllFragmentPresenter(AllFragmentContract.IAllFragmentView view, Context context){
+    public AllFragmentPresenter(AllFragmentContract.IAllFragmentView view){
         this.view=view;
         data=new AllFragmentModel();
-        adapter=new DataAdapter(context);
+//        adapter=new DataAdapter(context);
         netValues=new ArrayList<>();
         debuffs=new ArrayList<>();
         order=new int[10000];
     }
     @Override
     /**
+     * 默认设置
      * 默认是设置今年以来,降序,全部
      */
     public void setData(){
@@ -48,9 +50,9 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
             //设置以debuff的降序显示
             currentOrderType=OrderType.DEBUFF_DESCEND;
             setOrder(Fund.Type.QUANBU,currentOrderType);
-            adapter.setFunds(data.getFunds(),netValues,debuffs,order);
+//            adapter.setFunds(data.getFunds(),netValues,debuffs,order);
         }
-        view.iniListView(adapter);
+        view.iniListView(data.getFunds(),netValues,debuffs,order);
     }
     @Override
     public void updateData(Fund.Type type){
@@ -65,11 +67,11 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
                 currentOrderType=OrderType.DEBUFF_DESCEND;
             }
             setOrder(type,currentOrderType);
-            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
-        }else {
-            adapter.setFunds(data.getFunds(type));
+//            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
+//        }else {
+//            adapter.setFunds(data.getFunds(type));
         }
-        view.updateListView(adapter);
+        view.updateListView(data.getFunds(type),netValues,debuffs,order);
     }
 
     @Override
@@ -83,9 +85,10 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
             //设置以debuff的降序显示
             currentOrderType=orderType;
             setOrder(type,currentOrderType);
-            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
+//            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
         }
-        view.showSelectTypeDataListView(adapter);
+
+        view.showSelectTypeDataListView(data.getFunds(type),netValues,debuffs,order);
     }
 
     @Override

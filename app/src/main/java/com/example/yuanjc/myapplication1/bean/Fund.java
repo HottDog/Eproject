@@ -5,6 +5,10 @@ import java.util.SimpleTimeZone;
 /**
  * Created by yuanjc on 2016/7/25.
  */
+
+/**
+ * 基金
+ */
 public class Fund {
 
     private String name;
@@ -208,6 +212,10 @@ public class Fund {
             }
         }
     }
+
+    /**
+     * 单位净值
+     */
     public class NetValue{
         double thisYearValue;      //今年以来
         double dayValue;           //日跌涨
@@ -296,6 +304,10 @@ public class Fund {
             this.monthValue = monthValue;
         }
     }
+
+    /**
+     * 亏盈百分比
+     */
     public class Debuff {
         double thisYearValue;      //今年以来
         double dayValue;           //日跌涨
