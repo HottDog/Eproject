@@ -243,8 +243,6 @@ public class AllFragment extends Fragment implements View.OnClickListener,
     private void defaultSetting(){
         clearSelect();
         setSelect(3);
-
-
     }
     private void setSelect(int index){
         switch (index){
