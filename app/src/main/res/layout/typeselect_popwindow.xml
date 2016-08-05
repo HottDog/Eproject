@@ -6,6 +6,7 @@
     android:background="@drawable/type_select_bg">
     <ListView
         android:id="@+id/type_list"
+        android:contentDescription="类型选择窗口"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/hui"
