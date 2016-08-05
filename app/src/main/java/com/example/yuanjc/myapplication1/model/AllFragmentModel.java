@@ -74,7 +74,7 @@ public class AllFragmentModel implements AllFragmentContract.IAllFragmentModel {
 //        ArrayList<Fund> typeFunds=new ArrayList<>();
         typeFunds.clear();
         if(t== Fund.Type.QUANBU){
-            Log.i("返回全部的数据","是的");
+//            Log.i("返回全部的数据","是的");
             return funds;
         }else {
             for(int i=0;i<funds.size();i++){
@@ -85,5 +85,10 @@ public class AllFragmentModel implements AllFragmentContract.IAllFragmentModel {
             return typeFunds;
         }
     }
-
+    /**
+     * 单元测试
+     */
+    public void setFunds(ArrayList<Fund> funds){
+        this.funds=funds;
+    }
 }

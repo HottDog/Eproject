@@ -36,10 +36,12 @@ public class DataAdapter extends BaseAdapter {
 
     public void setFunds(ArrayList<Fund> funds,ArrayList<Double> netValues,
             ArrayList<Double> debuffs,int[] order) {
+        if(funds!=null) {
             this.funds = funds;
-            this.order=order;
-            this.debuffs=debuffs;
-            this.netValues=netValues;
+            this.order = order;
+            this.debuffs = debuffs;
+            this.netValues = netValues;
+        }
     }
     public void setFunds(ArrayList<Fund> funds){
 //        this.funds.clear();

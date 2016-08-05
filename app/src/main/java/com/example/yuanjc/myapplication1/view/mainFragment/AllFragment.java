@@ -1,6 +1,7 @@
 package com.example.yuanjc.myapplication1.view.mainFragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,11 +17,15 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.yuanjc.myapplication1.adapter.DataAdapter;
+import com.example.yuanjc.myapplication1.view.activity.DetailActivity;
 import com.example.yuanjc.myapplication1.view.customView.ItemSelectPopWindow;
 import com.example.yuanjc.myapplication1.R;
 import com.example.yuanjc.myapplication1.view.customView.RefreshAndLoadListView;
 import com.example.yuanjc.myapplication1.bean.Fund;
 import com.example.yuanjc.myapplication1.presenter.AllFragmentPresenter;
+
+import java.util.ArrayList;
 
 /**
  * Created by yuanjc on 2016/7/21.
@@ -47,6 +52,8 @@ public class AllFragment extends Fragment implements View.OnClickListener,
     private ImageView iv22;
 
     private RefreshAndLoadListView listView;
+
+    private DataAdapter adapter;
 
     private ItemSelectPopWindow itemSelectPopWindow;
     //单位净值排序，true为升序，false为降序,默认为降序
@@ -147,10 +154,9 @@ public class AllFragment extends Fragment implements View.OnClickListener,
         iv22=(ImageView)layout.findViewById(R.id.iv22);
 
         listView=(RefreshAndLoadListView)layout.findViewById(R.id.listview);
-        if(getActivity()!=null) {
-            presenter = new AllFragmentPresenter(this, getActivity());
-            presenter.setData();
-        }
+        presenter = new AllFragmentPresenter(this);
+        presenter.setData();
+
         //set the click event
         re1.setOnClickListener(this);
         re2.setOnClickListener(this);
@@ -193,8 +199,9 @@ public class AllFragment extends Fragment implements View.OnClickListener,
 //                Intent intent=new Intent(getActivity(),DetailActivity.class);
 //                Bundle bundle=new Bundle();
                 if(null!=getActivity()) {
-                    presenter.goTo(getActivity(),select,position-1);
+                    presenter.goTo(select,position-1);
                 }
+
             }
         });
     }
@@ -355,18 +362,48 @@ public class AllFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
-    public void iniListView(BaseAdapter adapter) {
-        listView.setAdapter(adapter);
+    public void iniListView(ArrayList<Fund> funds,ArrayList<Double> netValues
+            ,ArrayList<Double> debuffs,int []order) {
+        if(null!=getActivity()) {
+            adapter = new DataAdapter(getActivity());
+            adapter.setFunds(funds,netValues,debuffs,order);
+            listView.setAdapter(adapter);
+        }
     }
 
     @Override
-    public void updateListView(BaseAdapter adapter) {
-        adapter.notifyDataSetChanged();
+    public void updateListView(ArrayList<Fund> funds,ArrayList<Double> netValues
+            ,ArrayList<Double> debuffs,int []order) {
+        if(adapter!=null){
+            adapter.setFunds(funds,netValues,debuffs,order);
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
-    public void showSelectTypeDataListView(BaseAdapter adapter) {
-        adapter.notifyDataSetChanged();
+    public void showSelectTypeDataListView(ArrayList<Fund> funds,ArrayList<Double> netValues
+            ,ArrayList<Double> debuffs,int []order) {
+        if(adapter!=null){
+            adapter.setFunds(funds,netValues,debuffs,order);
+            adapter.notifyDataSetChanged();
+        }
+
+    }
+
+    @Override
+    public void goTo(String name, String id, String type, boolean AIP, boolean buy) {
+        if(null==getActivity()) {
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("name", name);
+            bundle.putString("id", id);
+            bundle.putString("type", type);
+            bundle.putBoolean("AIP", AIP);
+            bundle.putBoolean("buy", buy);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     public final static int ONE=0X111;

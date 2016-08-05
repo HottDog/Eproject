@@ -18,6 +18,12 @@ public class DataUtil {
     public static final int getIntRandom(int min,int max){
         return (int)(min+Math.random()*(max-min+1));
     }
+
+    /**
+     * 返回给定值(double)的随机正负
+     * @param d
+     * @return
+     */
     public static final double randomNP(double d){
         if(getIntRandom(0,1)==1){
             return -d;
@@ -29,8 +35,8 @@ public class DataUtil {
     /**
      * 获取升序序列
      * 计数排序算法
-     * @param a
-     * @param b
+     * @param a 用来存放拍好序的序列，列如a[0]=i,b.get(i)就是数组b的最大值
+     * @param b 序列待排序的double型Arraylist数组
      * @param <T>
      */
     public static final <T extends Comparable<T>> void ascendingOrder
@@ -57,8 +63,8 @@ public class DataUtil {
     /**
      * 获取降序序列
      * 计数排序算法
-     * @param a
-     * @param b
+     * @param a 用来存放拍好序的序列，列如a[0]=i,b.get(i)就是数组b的最大值
+     * @param b 序列待排序的double型Arraylist数组
      * @param <T>
      */
     public static final <T extends Comparable<T>> void descendingOrder
