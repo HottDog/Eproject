@@ -24,6 +24,7 @@ public interface AllFragmentContract {
                 ,ArrayList<Double> debuffs,int []order);
         void showSelectTypeDataListView(ArrayList<Fund> funds,ArrayList<Double> netValues
                 ,ArrayList<Double> debuffs,int []order);
+        void goTo(String name,String id,String type,boolean AIP,boolean buy);
 
     }
     interface IAllFragmentPresenter{
@@ -31,6 +32,6 @@ public interface AllFragmentContract {
         void updateData(Fund.Type type);
         void showSelctTypeData(Fund.Type type, AllFragmentPresenter.ValueType valueType, AllFragmentPresenter.OrderType orderType);
         void changeSelectTypeData(Fund.Type type);
-        void goTo(Activity activity, Fund.Type t,int p);
+        void goTo( Fund.Type t,int p);
     }
 }

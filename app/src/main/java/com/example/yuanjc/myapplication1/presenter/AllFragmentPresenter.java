@@ -77,17 +77,24 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
     @Override
     public void showSelctTypeData(Fund.Type type, ValueType valueType, OrderType orderType) {
         if(data.getFunds(type)!=null&&data.getFunds(type).size()>0){
-            //设置显示今年以来的数据
             if(valueType!=null) {
                 currentValueType = valueType;
             }
+            //默认设置显示今年以来的数据
+            if(currentValueType==null){
+                currentValueType=ValueType.THISYEARVALUE;
+            }
             setValuse(type,currentValueType);
             //设置以debuff的降序显示
-            currentOrderType=orderType;
+            if(orderType!=null) {
+                currentOrderType = orderType;
+            }
+            if(currentOrderType==null){
+                currentOrderType=OrderType.DEBUFF_DESCEND;
+            }
             setOrder(type,currentOrderType);
 //            adapter.setFunds(data.getFunds(type),netValues,debuffs,order);
         }
-
         view.showSelectTypeDataListView(data.getFunds(type),netValues,debuffs,order);
     }
 
@@ -98,19 +105,16 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
     }
 
     @Override
-    public void goTo(Activity activity, Fund.Type t,int p) {
+    public void goTo( Fund.Type t,int p) {
         if(data.getFunds(t)!=null&&data.getFunds(t).size()>0) {
-            Intent intent = new Intent(activity, DetailActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putString("name",data.getFunds(t).get(order[p]).getName() );
-            bundle.putString("id",data.getFunds(t).get(order[p]).getId());
-            bundle.putString("type",data.getFunds(t).get(order[p]).getType().toString());
-            bundle.putBoolean("AIP",data.getFunds(t).get(order[p]).isAIP_isok());
-            bundle.putBoolean("buy",data.getFunds(t).get(order[p]).isBuy_isok());
-            intent.putExtras(bundle);
-            activity.startActivity(intent);
+            view.goTo(data.getFunds(t).get(order[p]).getName(),
+                    data.getFunds(t).get(order[p]).getId(),
+                    data.getFunds(t).get(order[p]).getType().toString(),
+                    data.getFunds(t).get(order[p]).isAIP_isok(),
+                    data.getFunds(t).get(order[p]).isBuy_isok());
         }
     }
+
 
     private void setValuse(Fund.Type type,ValueType valueType){
         if(data.getFunds(type)!=null){
@@ -205,4 +209,23 @@ public class AllFragmentPresenter implements AllFragmentContract.IAllFragmentPre
         DEBUFF_DESCEND(1),DEBUFF_ASCEND(2),NETVALUE_DESCEND(3),NETVALUE_ASCEND(4);
         OrderType(int i){}
     }
+
+    /**
+     * 方便单元测试的get和set函数
+     */
+
+    public void setModel(AllFragmentContract.IAllFragmentModel model){
+        this.data=model;
+    }
+    public void setCurrentValueType(ValueType type){
+        this.currentValueType=type;
+    }
+
+    public void setCurrentOrderType(OrderType type){
+        this.currentOrderType=type;
+    }
+    public void setOrder(int []order){
+        this.order=order;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.example.yuanjc.myapplication1.view.mainFragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.yuanjc.myapplication1.adapter.DataAdapter;
+import com.example.yuanjc.myapplication1.view.activity.DetailActivity;
 import com.example.yuanjc.myapplication1.view.customView.ItemSelectPopWindow;
 import com.example.yuanjc.myapplication1.R;
 import com.example.yuanjc.myapplication1.view.customView.RefreshAndLoadListView;
@@ -197,8 +199,9 @@ public class AllFragment extends Fragment implements View.OnClickListener,
 //                Intent intent=new Intent(getActivity(),DetailActivity.class);
 //                Bundle bundle=new Bundle();
                 if(null!=getActivity()) {
-                    presenter.goTo(getActivity(),select,position-1);
+                    presenter.goTo(select,position-1);
                 }
+
             }
         });
     }
@@ -386,6 +389,21 @@ public class AllFragment extends Fragment implements View.OnClickListener,
             adapter.notifyDataSetChanged();
         }
 
+    }
+
+    @Override
+    public void goTo(String name, String id, String type, boolean AIP, boolean buy) {
+        if(null==getActivity()) {
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("name", name);
+            bundle.putString("id", id);
+            bundle.putString("type", type);
+            bundle.putBoolean("AIP", AIP);
+            bundle.putBoolean("buy", buy);
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
 
     public final static int ONE=0X111;
